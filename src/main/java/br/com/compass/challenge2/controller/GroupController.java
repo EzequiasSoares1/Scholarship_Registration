@@ -31,10 +31,10 @@ public class GroupController {
     @GetMapping("/{groupId}")
     public ResponseEntity<Group> findGroupById(@PathVariable Long groupId){
         Group group = groupService.findById(groupId);
-        if(group == null){
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        if(group != null){
+            return new ResponseEntity<>(group, HttpStatus.OK);
         }
-        return new ResponseEntity<>(group, HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     /*
